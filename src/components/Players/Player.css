@@ -1,0 +1,21 @@
+.playernames .simple-card {
+  padding: 10px;
+  min-width: 120px !important;
+}
+.player {
+  border: 1px solid;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 7px rgb(0 0 0 / 50%);
+}
+.player button {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Transition for smooth scaling */
+}
+
+.player button:hover {
+  transform: scale(1.2); /* Make the button 20% larger on hover */
+}
+
+.player button:focus {
+  outline: none; /* Remove the default focus outline */
+}
