@@ -44,3 +44,27 @@
 .read-the-docs {
   color: #888;
 }
+@media (max-width: 678px) {
+  .mainbox {
+    max-width: 100% !important;
+  }
+  .playbox {
+    padding: 0px !important;
+  }
+}
+@media (min-width: 678px) and (max-width: 833px) {
+  .mainbox {
+    max-width: 75% !important;
+  }
+  .playbox {
+    padding: 0px !important;
+  }
+}
+@media (min-width: 833px) and (max-width: 1030px) {
+  .mainbox {
+    max-width: 60% !important;
+  }
+  .playbox {
+    padding: 0px !important;
+  }
+}

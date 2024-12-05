@@ -98,16 +98,17 @@ function App() {
           )}
         </div>
       )}
-      <Card style={styles.mainbox}>
+      <Card style={styles.mainbox} className="mainbox">
         <div className="playernames">
           <Player setPlayer={setPlayer1} name={player1.name} />
           <Player setPlayer={setPlayer2} name={player2.name} />
         </div>
-        <Card style={styles.tictactoewhole}>
+        <Card style={styles.tictactoewhole} className="playbox">
           {Array.from({ length: 9 }).map((_, index) => (
             <Card
               key={index}
               onClick={() => appendMark(index)}
+              className="playbox"
               style={{
                 ...styles.tictacbox,
                 pointerEvents: mark[index] !== null ? "none" : "auto", // Disable pointer events if the box is already marked
