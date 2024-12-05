@@ -43,23 +43,28 @@ function App() {
   }
 
   useEffect(() => {
-    const winner = checkWin(mark, winningCombos);
-    if (winner) {
-      if (winner.includes("cross")) {
+    const checkwinner = checkWin(mark, winningCombos);
+    if (checkwinner) {
+      if (checkwinner.includes("cross")) {
         setPlayer1((prevplayer1) => ({ ...prevplayer1, win: true }));
         setPlayer2((prevplayer2) => ({ ...prevplayer2, win: false }));
         setWinner(player1.name);
-      } else if (winner.includes("circle")) {
+      } else if (checkwinner.includes("circle")) {
         setPlayer2((prevplayer2) => ({ ...prevplayer2, win: true }));
         setPlayer1((prevplayer1) => ({ ...prevplayer1, win: false }));
         setWinner(player2.name);
-      } else if (winner.includes("Draw")) {
+      } else if (checkwinner.includes("Draw")) {
         setWinner("Draw");
       }
     } else {
       console.log("No winner yet!");
     }
   }, [mark]);
+  useEffect(() => {
+    if (winner) {
+      console.log("Winner:", winner);
+    }
+  }, [winner]);
 
   const appendMark = (index) => {
     setMark((prevMark) => {
@@ -103,7 +108,13 @@ function App() {
           <Player setPlayer={setPlayer1} name={player1.name} />
           <Player setPlayer={setPlayer2} name={player2.name} />
         </div>
-        <Card style={styles.tictactoewhole} className="playbox">
+        <Card
+          style={{
+            ...styles.tictactoewhole,
+            pointerEvents: winner ? "none" : "auto",
+          }}
+          className="playbox"
+        >
           {Array.from({ length: 9 }).map((_, index) => (
             <Card
               key={index}
@@ -111,8 +122,8 @@ function App() {
               className="playbox"
               style={{
                 ...styles.tictacbox,
-                pointerEvents: mark[index] !== null ? "none" : "auto", // Disable pointer events if the box is already marked
-                opacity: mark[index] !== null ? 0.5 : 1, // Optional: Add opacity to indicate it's disabled
+                pointerEvents: mark[index] !== null || winner ? "none" : "auto", // Disable pointer events if the box is already marked
+                opacity: mark[index] !== null || winner ? 0.5 : 1, // Optional: Add opacity to indicate it's disabled
               }}
             >
               {mark[index] != null ? <img src={mark[index]} alt="Mark" /> : ""}
